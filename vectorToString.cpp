@@ -8,42 +8,34 @@
 // Function Prototypes
 using namespace std;
 
-
-//create function prototype, i.e. and empty body function
-//return vector from function that accepts a string and a separator
-
-vector<string> StringToVector(string theString, char separator);
-
-
+//return string from a function called vectortostring
+//accepts a vector of strings as a reference operator to pass a vector inside
+//otherwise just the address of the vector will be passed in
+string VectorToString(vector<string>& vec, char separator);
 
 
 int main() {
+	vector<string> vCusts(3);
+	vCusts[0] = "Bob";
+	vCusts[1] = "Sue";
+	vCusts[2] = "Tom";
+
+	string sCusts = VectorToString(vCusts, ' ');
+	cout << sCusts << "\n";
 
 return 0;
 
 }
 
-//create the fuction with body/method from line 15
+//use the function prototype here
+	string VectorToString(vector<string>& vec, char separator){
 
-vector<string> StringToVector(string theString, char separator){
+//create an empty string
+		string theString = "";
 
-	//create empty vector called vecsWords
-	vector<string> vecsWords;
+//cycle through all items in passed vector cust [customers]
+		for(auto cust : vec)
+			theString += cust + separator;
 
-	//create a string stream type function called ss that accepts a var called theString
-	//doesn't have IO operation, read and writes stream
-	//code reuse, offline data formatting, etc
-	//seperated by tabs, spaces, newlines as tokens.
-	stringstream ss(theString);
-
-	//create a string called sIndivStr
-	string sIndivStr;
-
-	//loop, while condition is True.
-	//while geting input from getline,
-	while(getline(ss, sIndivStr, separator)){
-
-		vecsWords.push_back(sIndivStr);
+		return theString;
 	}
-
-}
